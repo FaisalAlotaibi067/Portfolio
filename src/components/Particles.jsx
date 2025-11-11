@@ -19,7 +19,7 @@ export default function Particles() {
       constructor() {
         this.x = Math.random() * w;
         this.y = Math.random() * h;
-        this.vx = (Math.random() - 0.5) * 0.04; // أبطأ من قبل بثلاث مرات
+        this.vx = (Math.random() - 0.5) * 0.04; 
         this.vy = (Math.random() - 0.5) * 0.04;
         this.size = Math.random() * 2 + 0.6;
         this.alpha = Math.random() * 0.5 + 0.4;
@@ -30,14 +30,14 @@ export default function Particles() {
         const dy = mouse.y - this.y;
         const d = Math.hypot(dx, dy) || 1;
         if (d < mouse.r) {
-          this.vx -= (dx / d) * 0.002; // جذب بسيط جداً
+          this.vx -= (dx / d) * 0.002; 
           this.vy -= (dy / d) * 0.002;
         }
 
         this.x += this.vx;
         this.y += this.vy;
 
-        // رجوع سلس بدون انعكاس عنيف
+    
         if (this.x < 0) this.x = w;
         if (this.x > w) this.x = 0;
         if (this.y < 0) this.y = h;

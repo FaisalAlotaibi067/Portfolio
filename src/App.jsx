@@ -8,7 +8,7 @@ export default function App() {
       <Particles />
 
       <main className="relative z-10 max-w-5xl mx-auto px-6 pt-32 pb-24 space-y-10 text-center">
-        {/* Name */}
+       
         <div>
           <h1
             className="text-6xl md:text-7xl font-extrabold select-none bg-clip-text text-transparent"
@@ -22,7 +22,6 @@ export default function App() {
           </h1>
         </div>
 
-        {/* Summary */}
         <p className="text-gray-300 text-lg leading-relaxed max-w-3xl mx-auto">
           Full-Stack Software Engineer with hands-on experience in developing
           scalable web applications and modern digital solutions. Strong
@@ -32,7 +31,7 @@ export default function App() {
           software.
         </p>
 
-        {/* Social Icons */}
+   
         <div className="flex justify-center gap-6 mt-5">
           <a
             href="https://www.linkedin.com/in/faisal-alotaibi-442953282/"
@@ -64,7 +63,7 @@ export default function App() {
           </a>
         </div>
 
-        {/* Skills */}
+
         <section>
           <h2 className="text-3xl font-bold text-blue-300 mb-6">Skills</h2>
           <div className="grid md:grid-cols-2 gap-6 text-center">
@@ -87,7 +86,6 @@ export default function App() {
 
         </section>
 
-        {/* Education */}
         <section>
           <h2 className="text-3xl font-bold text-blue-300 mb-6">Education</h2>
           <div className="grid md:grid-cols-2 gap-6 text-left">
@@ -116,7 +114,7 @@ export default function App() {
           </div>
         </section>
 
-        {/* Experience */}
+      
         <section className="backdrop-blur-md bg-white/5 rounded-2xl p-6 border border-white/10 shadow-md text-left">
           <h2 className="text-3xl font-bold mb-4 text-blue-300">Experience</h2>
           <p className="text-gray-200">
@@ -138,7 +136,7 @@ export default function App() {
           </p>
         </section>
 
-        {/* Projects */}
+       
         <h2 className="text-3xl font-bold text-blue-300 mt-12 mb-4">
           Projects
         </h2>
@@ -178,7 +176,7 @@ export default function App() {
           </div>
         </div>
 
-        {/* Courses */}
+     
         <section className="backdrop-blur-md bg-white/5 rounded-2xl p-6 border border-white/10 shadow-md text-left">
           <h2 className="text-3xl font-bold mb-4 text-blue-300">Courses</h2>
           <p className="text-gray-200">
@@ -197,7 +195,7 @@ export default function App() {
           </p>
         </section>
 
-        {/* Languages */}
+       
         <section className="backdrop-blur-md bg-white/5 rounded-2xl p-6 border border-white/10 shadow-md text-left">
           <h2 className="text-3xl font-bold mb-4 text-blue-300">Languages</h2>
           <p className="text-gray-200">Arabic – Native | English – Fluent</p>

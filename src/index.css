@@ -1,12 +1,12 @@
 @import "tailwindcss";
 
-/* أساسيات */
+
 @layer base {
   html, body, #root { height: 100%; margin: 0; scroll-behavior: smooth; }
   body { background-color: #060e21; }
 }
 
-/* أدوات جاهزة للبطاقات */
+
 @layer components {
   .glass-card {
     @apply bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-8 md:p-10
@@ -34,7 +34,7 @@
   }
 }
 
-/* أنيميشن الظهور والنبض */
+
 @layer utilities {
   .reveal { opacity: 0; transform: translateY(16px); transition: all .6s ease; }
   .reveal.show { opacity: 1; transform: translateY(0); }
