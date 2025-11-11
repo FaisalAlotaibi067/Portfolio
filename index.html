@@ -1,72 +1,13 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <!--Google Fonts-->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Alata&display=swap" rel="stylesheet">
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Portfolio</title>
-  <link rel="stylesheet" href="./styles/main.css" />
-  <script src="./scripts/app.js"></script>
-</head>
-<body>
-  
-  <header>
-    <h1> Faisal Alotaibi </h1>
-    <nav>
-      <a href="#about">About</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
-    </nav>
-    <!-- Img src - SVG Repo  -->
-    <button id="theme"><img id ="icon" src="./assets/moon.svg" alt="" ></button>
-    
-  </header>
-
-  
-  <section id="about Me">
-    <h2>About Me</h2>
-    <p>
-      My name is Faisal I'm a software developer with a strong interest in 
-    web development and problem solving I enjoy building clean and simple 
-    websites using HTML , CSS and JavaScript and I'm always curious to learn 
-    new technologies Currently I'm learning Python to expand my skills beyond web development
-    My goal is to grow as a developer, work on meaningful projects and 
-    eventually contribute to innovative solutions that make life easier for people
-    </p>
-  </section>
-
-  <section id="projects">
-    <h2>Projects</h2>
-    <div class="projects">
-      <div class="card">
-        <h3> IOT / AI Camera, Python </h3>
-        <p>A camera That uses AI to recognize human expressions and emotions and recognize objects </p>
-      </div>
-      <div class="card">
-        <h3> Volunteer Website, SQL, PHP</h3>
-        <p style="margin-top: 20px;">A platform that gives you the opportunity to volunteer in your area of expertise</p>
-      </div>
-      <div class="card">
-        <h3> Donate For Blood Application, C++ </h3>
-        <p>An application that enables you to search for desired blood donors or donate blood in the selected city</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Form Handling (Getform) -->
-  <section id="contact">
-    <h2>Contact</h2>
-    <form action="https://getform.io/f/aolzqpob" method="POST">
-      <input type="text" name="name" placeholder=" Name" required  />
-      <input type="email" name="email"placeholder=" Email" required />
-      <textarea name="text" id="Message"  rows="5" placeholder=" Message" required></textarea>
-      <button type="submit">Send Message</button>
-    </form>
-  </section>
-
-  
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>portfolio</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>
