@@ -9,11 +9,9 @@ export default function Particles() {
     let w = (c.width = window.innerWidth);
     let h = (c.height = window.innerHeight);
 
-    const isMobile = window.innerWidth < 768;
-
     const particles = [];
-    const N = Math.floor((w * h) / (isMobile ? 40000 : 20000)); 
-    const LINK_DIST = isMobile ? 90 : 150;
+    const N = Math.floor((w * h) / 20000);
+    const LINK_DIST = 150;
     const LINK_DIST2 = LINK_DIST * LINK_DIST;
 
     class P {
@@ -21,13 +19,13 @@ export default function Particles() {
         this.x = Math.random() * w;
         this.y = Math.random() * h;
 
-        this.vx = (Math.random() - 0.5) * 0.11;
-        this.vy = (Math.random() - 0.5) * 0.11;
+        this.vx = (Math.random() - 0.5) * 0.20;
+        this.vy = (Math.random() - 0.5) * 0.20;
 
-        this.drift = (Math.random() - 0.5) * 0.002;
+        this.drift = (Math.random() - 0.5) * 0.003;
 
-        this.size = Math.random() * (isMobile ? 1.3 : 2) + 0.5;
-        this.alpha = Math.random() * 0.5 + 0.4;
+        this.size = Math.random() * 2 + 0.6;
+        this.alpha = Math.random() * 0.6 + 0.5;
       }
 
       step() {
@@ -47,7 +45,7 @@ export default function Particles() {
           0,
           this.x,
           this.y,
-          this.size * (isMobile ? 6 : 10)
+          this.size * 10
         );
 
         grad.addColorStop(0, `rgba(150,170,255,${this.alpha})`);
@@ -55,7 +53,7 @@ export default function Particles() {
 
         ctx.fillStyle = grad;
         ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size * 2.5, 0, Math.PI * 2);
+        ctx.arc(this.x, this.y, this.size * 3, 0, Math.PI * 2);
         ctx.fill();
       }
     }
@@ -63,8 +61,6 @@ export default function Particles() {
     for (let i = 0; i < N; i++) particles.push(new P());
 
     function connect() {
-      if (isMobile) return; 
-
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
           const dx = particles[i].x - particles[j].x;
@@ -73,6 +69,7 @@ export default function Particles() {
 
           if (d2 < LINK_DIST2) {
             const o = 1 - d2 / LINK_DIST2;
+
             ctx.strokeStyle = `rgba(120,160,255,${o * 0.18})`;
             ctx.lineWidth = 0.7;
 
@@ -86,10 +83,24 @@ export default function Particles() {
     }
 
     function frame() {
+
       const bg = ctx.createLinearGradient(0, 0, w, h);
       bg.addColorStop(0, "#060e21");
       bg.addColorStop(1, "#08142f");
       ctx.fillStyle = bg;
+      ctx.fillRect(0, 0, w, h);
+
+      const halo = ctx.createRadialGradient(
+        w * 0.3,
+        h * 0.2,
+        0,
+        w * 0.3,
+        h * 0.2,
+        Math.max(w, h)
+      );
+      halo.addColorStop(0, "rgba(50,80,160,0.2)");
+      halo.addColorStop(1, "rgba(6,17,39,0)");
+      ctx.fillStyle = halo;
       ctx.fillRect(0, 0, w, h);
 
       particles.forEach((p) => {
@@ -118,6 +129,10 @@ export default function Particles() {
     <canvas
       ref={canvasRef}
       className="fixed inset-0 -z-10"
+      style={{
+        background:
+          "radial-gradient(900px 600px at 20% 10%, #0a1430 0%, #060e21 60%, #050a1a 100%)",
+      }}
     />
   );
 }
