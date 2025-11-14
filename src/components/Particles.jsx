@@ -10,34 +10,28 @@ export default function Particles() {
     let h = (c.height = window.innerHeight);
 
     const particles = [];
-    const N = Math.floor((w * h) / 23000);
+    const N = Math.floor((w * h) / 20000);
     const LINK_DIST = 150;
     const LINK_DIST2 = LINK_DIST * LINK_DIST;
-    const mouse = { x: w / 2, y: h / 2, r: 140 };
 
     class P {
       constructor() {
         this.x = Math.random() * w;
         this.y = Math.random() * h;
-        this.vx = (Math.random() - 0.5) * 0.04; 
-        this.vy = (Math.random() - 0.5) * 0.04;
+
+        this.vx = (Math.random() - 0.5) * 0.20;
+        this.vy = (Math.random() - 0.5) * 0.20;
+
+        this.drift = (Math.random() - 0.5) * 0.003;
+
         this.size = Math.random() * 2 + 0.6;
-        this.alpha = Math.random() * 0.5 + 0.4;
+        this.alpha = Math.random() * 0.6 + 0.5;
       }
 
       step() {
-        const dx = mouse.x - this.x;
-        const dy = mouse.y - this.y;
-        const d = Math.hypot(dx, dy) || 1;
-        if (d < mouse.r) {
-          this.vx -= (dx / d) * 0.002; 
-          this.vy -= (dy / d) * 0.002;
-        }
+        this.x += this.vx + Math.sin(Date.now() * 0.0003) * this.drift;
+        this.y += this.vy + Math.cos(Date.now() * 0.0003) * this.drift;
 
-        this.x += this.vx;
-        this.y += this.vy;
-
-    
         if (this.x < 0) this.x = w;
         if (this.x > w) this.x = 0;
         if (this.y < 0) this.y = h;
@@ -45,12 +39,21 @@ export default function Particles() {
       }
 
       draw() {
-        const grad = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size * 8);
-        grad.addColorStop(0, `rgba(140,180,255,${this.alpha})`);
-        grad.addColorStop(1, `rgba(6,12,30,0)`);
+        const grad = ctx.createRadialGradient(
+          this.x,
+          this.y,
+          0,
+          this.x,
+          this.y,
+          this.size * 10
+        );
+
+        grad.addColorStop(0, `rgba(150,170,255,${this.alpha})`);
+        grad.addColorStop(1, `rgba(10,20,40,0)`);
+
         ctx.fillStyle = grad;
         ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size * 2.2, 0, Math.PI * 2);
+        ctx.arc(this.x, this.y, this.size * 3, 0, Math.PI * 2);
         ctx.fill();
       }
     }
@@ -63,10 +66,13 @@ export default function Particles() {
           const dx = particles[i].x - particles[j].x;
           const dy = particles[i].y - particles[j].y;
           const d2 = dx * dx + dy * dy;
+
           if (d2 < LINK_DIST2) {
             const o = 1 - d2 / LINK_DIST2;
-            ctx.strokeStyle = `rgba(100,160,255,${o * 0.1})`;
-            ctx.lineWidth = 0.5;
+
+            ctx.strokeStyle = `rgba(120,160,255,${o * 0.18})`;
+            ctx.lineWidth = 0.7;
+
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
@@ -77,11 +83,22 @@ export default function Particles() {
     }
 
     function frame() {
-      ctx.fillStyle = "#060e21";
+
+      const bg = ctx.createLinearGradient(0, 0, w, h);
+      bg.addColorStop(0, "#060e21");
+      bg.addColorStop(1, "#08142f");
+      ctx.fillStyle = bg;
       ctx.fillRect(0, 0, w, h);
 
-      const halo = ctx.createRadialGradient(w * 0.3, h * 0.2, 0, w * 0.3, h * 0.2, Math.max(w, h));
-      halo.addColorStop(0, "rgba(35,80,170,0.15)");
+      const halo = ctx.createRadialGradient(
+        w * 0.3,
+        h * 0.2,
+        0,
+        w * 0.3,
+        h * 0.2,
+        Math.max(w, h)
+      );
+      halo.addColorStop(0, "rgba(50,80,160,0.2)");
       halo.addColorStop(1, "rgba(6,17,39,0)");
       ctx.fillStyle = halo;
       ctx.fillRect(0, 0, w, h);
@@ -95,21 +112,15 @@ export default function Particles() {
       requestAnimationFrame(frame);
     }
 
-    const onMove = (e) => {
-      mouse.x = e.clientX;
-      mouse.y = e.clientY;
-    };
     const onResize = () => {
       w = c.width = window.innerWidth;
       h = c.height = window.innerHeight;
     };
 
-    window.addEventListener("mousemove", onMove);
     window.addEventListener("resize", onResize);
     frame();
 
     return () => {
-      window.removeEventListener("mousemove", onMove);
       window.removeEventListener("resize", onResize);
     };
   }, []);
@@ -120,7 +131,7 @@ export default function Particles() {
       className="fixed inset-0 -z-10"
       style={{
         background:
-          "radial-gradient(1000px 700px at 20% 10%, #0b1e4b 0%, #081228 55%, #060e21 100%)",
+          "radial-gradient(900px 600px at 20% 10%, #0a1430 0%, #060e21 60%, #050a1a 100%)",
       }}
     />
   );
